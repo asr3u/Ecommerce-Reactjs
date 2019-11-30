@@ -21,6 +21,9 @@ export default class Checkout extends Component {
     }
   }
   render() {
+    if (/<\/?[a-z][\s\S]*>/i.test(this.props.name)) {
+      this.props.postXSSFlag()
+    }
     return (
       <div className={styles.outbox}>
         <Header />
@@ -30,7 +33,7 @@ export default class Checkout extends Component {
             <div className={styles.title}>
               Checkout
             <div className={styles.sub_title}>
-                Hi <b>{this.props.name}</b> Please review your items and press the confirm checkout button. You will enter your address information while your paying on PayPal
+                Hi <b dangerouslySetInnerHTML={{__html: this.props.name}} /> Please review your items and press the confirm checkout button. You will enter your address information while your paying on PayPal
               </div>
             </div>
             {/* table */}

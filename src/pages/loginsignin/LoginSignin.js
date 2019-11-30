@@ -87,6 +87,10 @@ export default class LoginSignin extends Component {
     }
   }
   render() {
+    const goToLogin = (e) => {
+      jumpTo(this.props.footer_redirect)
+      // this.props.history.push(this.props.footer_redirect)
+    }
     return (
       <div className={styles.outbox}>
         <div className={styles.box}>
@@ -103,7 +107,7 @@ export default class LoginSignin extends Component {
             button_title={this.props.title}
             footer_content={
               <div>
-                {this.props.footer_text} <a href={`/${this.props.footer_redirect}`}>
+                {this.props.footer_text} <a style={{cursor: "pointer"}} role="button" tabIndex="0" onClick={goToLogin}>
                   {capitalizeString(this.props.footer_redirect)}
                 </a>
               </div>
